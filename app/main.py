@@ -35,7 +35,7 @@ async def handle_form(
     capsule: str = Form(None)
 ):
     base_url = api_url.rstrip("/")
-    keys_url = f"{base_url}/katello/api/organizations/1/activation_keys"
+    keys_url = f"{base_url}/katello/api/organizations/1/activation_keys?per_page=100&page=1"
     capsules_url = f"{base_url}/api/v2/smart_proxies"
     registration_url = f"{base_url}/api/v2/registration_commands"
 
@@ -83,6 +83,7 @@ async def handle_form(
                         "smart_proxy_id": capsule_id,
                         "setup_insights": False,
                         "insecure": True,
+                        "jwt_expiration": 0,
                         "activation_key": activation_key
                     }
                 }
